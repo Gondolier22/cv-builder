@@ -1,0 +1,363 @@
+{
+  "cv.builder": {
+    "title": "Constructor de CV",
+    "description": "Esta aplicación te permite crear y gestionar tu CV de manera sencilla y eficiente.",
+    "landing": {
+      "title": "CV Builder",
+      "titleSuffix": "Pro",
+      "description": "Crea tu CV profesional de forma rápida y sencilla. Completa el formulario paso a paso, personaliza tu información profesional y descarga tu currículum en formato PDF. También puedes cargar un CV existente en formato JSON para editarlo.",
+      "features": {
+        "guidedForm": {
+          "title": "Formulario Guiado",
+          "description": "Proceso paso a paso para completar toda tu información profesional"
+        },
+        "preview": {
+          "title": "Vista Previa",
+          "description": "Ve cómo queda tu CV en tiempo real mientras lo editas"
+        },
+        "downloadPdf": {
+          "title": "Descarga PDF",
+          "description": "Exporta tu CV terminado en formato PDF profesional"
+        }
+      },
+      "buttons": {
+        "createNew": "🚀 Crear Nuevo CV",
+        "loadExisting": "📁 Cargar CV Existente"
+      },
+      "tip": "💡 Tip: Puedes cargar un archivo JSON con la estructura de tu CV previo para editarlo",
+      "errors": {
+        "invalidFormat": "Error: El archivo no tiene un formato válido",
+        "selectValidJson": "Por favor, selecciona un archivo JSON válido"
+      }
+    },
+    "form": {
+      "navigation": {
+        "previous": "Anterior"
+      },
+      "progress": {
+        "step": "Paso {{current}} de {{total}}",
+        "completed": "{{percentage}}% completado"
+      },
+      "steps": {
+        "basics": "Información Básica",
+        "work": "Experiencia Laboral",
+        "projects": "Proyectos",
+        "education": "Educación",
+        "courses": "Cursos",
+        "skills": "Habilidades"
+      },
+      "basics": {
+        "title": "Información Personal",
+        "description": "Completa tu información básica para comenzar a crear tu CV",
+        "fields": {
+          "name": {
+            "label": "Nombre completo *",
+            "placeholder": "Tu nombre completo"
+          },
+          "email": {
+            "label": "Email *",
+            "placeholder": "tu@email.com"
+          },
+          "phone": {
+            "label": "Teléfono *",
+            "placeholder": "+34 123 456 789"
+          },
+          "url": {
+            "label": "URL Personal",
+            "placeholder": "https://tu-portfolio.com"
+          },
+          "image": {
+            "label": "Foto de perfil",
+            "placeholder": "Selecciona una imagen (JPG, PNG, WebP)"
+          },
+          "summary": {
+            "label": "Resumen profesional *",
+            "placeholder": "Breve descripción de tu perfil profesional..."
+          },
+          "city": {
+            "label": "Ciudad *",
+            "placeholder": "Madrid"
+          },
+          "region": {
+            "label": "Región *",
+            "placeholder": "España"
+          }
+        },
+        "buttons": {
+          "nextStep": "Siguiente paso"
+        },
+        "validation": {
+          "name": {
+            "minLength": "El nombre debe tener al menos 3 caracteres"
+          },
+          "email": {
+            "invalid": "El formato del email no es válido"
+          },
+          "phone": {
+            "invalid": "El formato del teléfono no es válido",
+            "minLength": "El teléfono debe tener al menos 9 caracteres"
+          },
+          "url": {
+            "invalid": "El formato de la URL no es válido"
+          },
+          "image": {
+            "invalid": "El archivo debe ser una imagen válida (JPG, PNG, WebP, etc.)"
+          },
+          "summary": {
+            "minLength": "El resumen debe tener al menos 30 caracteres"
+          }
+        }
+      },
+      "work": {
+        "title": "Experiencia Laboral",
+        "description": "Añade tu experiencia laboral, incluyendo trabajos anteriores y actuales",
+        "fields": {
+          "position": {
+            "label": "Puesto de Trabajo *",
+            "placeholder": "Ingresa tu puesto de trabajo"
+          },
+          "company": {
+            "label": "Nombre de la Empresa *",
+            "placeholder": "Ingresa el nombre de la empresa"
+          },
+          "startDate": {
+            "label": "Fecha de Inicio *"
+          },
+          "endDate": {
+            "label": "Fecha de Fin"
+          },
+          "url": {
+            "label": "URL del Trabajo",
+            "placeholder": "Ingresa la URL del trabajo"
+          },
+          "summary": {
+            "label": "Descripción *",
+            "placeholder": "Describe tus responsabilidades y logros"
+          }
+        },
+        "buttons": {
+          "add": "Añadir",
+          "next": "Siguiente"
+        },
+        "messages": {
+          "successAdded": "Experiencia laboral añadida con éxito"
+        },
+        "validation": {
+          "company": {
+            "minLength": "Nombre de la empresa debe tener al menos 5 caracteres"
+          },
+          "position": {
+            "minLength": "Nombre del puesto debe tener al menos 5 caracteres"
+          },
+          "url": {
+            "invalid": "URL tiene que tener un formato válido"
+          },
+          "startDate": {
+            "minLength": "Fecha de inicio debe tener al menos 10 caracteres"
+          },
+          "endDate": {
+            "minLength": "Fecha de finalización debe tener al menos 10 caracteres si se proporciona"
+          },
+          "summary": {
+            "minLength": "Descripción debe tener al menos 50 caracteres"
+          }
+        }
+      },
+      "education": {
+        "title": "Educación",
+        "description": "Añade tu formación académica, certificaciones y cursos relevantes",
+        "fields": {
+          "title": {
+            "label": "Título/Carrera *",
+            "placeholder": "Ingresa el título o carrera estudiada"
+          },
+          "institution": {
+            "label": "Institución *",
+            "placeholder": "Ingresa el nombre de la institución educativa"
+          },
+          "startDate": {
+            "label": "Fecha de Inicio *"
+          },
+          "endDate": {
+            "label": "Fecha de Fin"
+          },
+          "url": {
+            "label": "URL de la Institución",
+            "placeholder": "Ingresa la URL de la institución"
+          }
+        },
+        "buttons": {
+          "add": "Añadir",
+          "next": "Siguiente"
+        },
+        "messages": {
+          "successAdded": "Educación añadida con éxito"
+        },
+        "validation": {
+          "title": {
+            "minLength": "El título debe tener al menos 3 caracteres"
+          },
+          "institution": {
+            "minLength": "La institución debe tener al menos 3 caracteres"
+          },
+          "url": {
+            "invalid": "URL debe tener un formato válido"
+          },
+          "startDate": {
+            "required": "La fecha de inicio es requerida",
+            "invalidFormat": "La fecha debe tener el formato YYYY-MM-DD",
+            "invalidDate": "La fecha de inicio no es válida"
+          },
+          "endDate": {
+            "invalid": "La fecha de fin debe ser posterior a la fecha de inicio",
+            "invalidFormat": "La fecha debe tener el formato YYYY-MM-DD",
+            "invalidDate": "La fecha de fin no es válida",
+            "mustBeAfterStart": "La fecha de fin debe ser posterior a la fecha de inicio"
+          }
+        }
+      },
+      "skills": {
+        "title": "Habilidades",
+        "description": "Añade tus habilidades técnicas y profesionales más relevantes",
+        "fields": {
+          "skill": {
+            "label": "Habilidad *",
+            "placeholder": "Ingresa una habilidad"
+          }
+        },
+        "buttons": {
+          "add": "Añadir",
+          "next": "Siguiente"
+        },
+        "messages": {
+          "successAdded": "Habilidad añadida con éxito"
+        },
+        "validation": {
+          "skill": {
+            "minLength": "La habilidad debe tener al menos 1 carácter"
+          }
+        }
+      },
+      "courses": {
+        "title": "Cursos y Certificaciones",
+        "description": "Añade cursos, certificaciones y formación complementaria relevante",
+        "fields": {
+          "title": {
+            "label": "Nombre del Curso *",
+            "placeholder": "Ingresa el nombre del curso o certificación"
+          },
+          "institution": {
+            "label": "Institución *",
+            "placeholder": "Ingresa el nombre de la institución"
+          },
+          "startDate": {
+            "label": "Fecha de Inicio *"
+          },
+          "endDate": {
+            "label": "Fecha de Fin"
+          },
+          "url": {
+            "label": "URL del Curso",
+            "placeholder": "Ingresa la URL del curso o certificación"
+          }
+        },
+        "buttons": {
+          "add": "Añadir",
+          "next": "Siguiente"
+        },
+        "messages": {
+          "successAdded": "Curso añadido con éxito"
+        },
+        "validation": {
+          "title": {
+            "minLength": "El nombre del curso debe tener al menos 3 caracteres"
+          },
+          "institution": {
+            "minLength": "La institución debe tener al menos 5 caracteres"
+          },
+          "url": {
+            "invalid": "URL debe tener un formato válido"
+          },
+          "startDate": {
+            "required": "La fecha de inicio es requerida",
+            "invalidFormat": "La fecha debe tener el formato YYYY-MM-DD",
+            "invalidDate": "La fecha de inicio no es válida"
+          },
+          "endDate": {
+            "invalid": "La fecha de fin debe ser posterior a la fecha de inicio",
+            "invalidFormat": "La fecha debe tener el formato YYYY-MM-DD",
+            "invalidDate": "La fecha de fin no es válida",
+            "mustBeAfterStart": "La fecha de fin debe ser posterior a la fecha de inicio"
+          }
+        }
+      },
+      "projects": {
+        "title": "Proyectos",
+        "description": "Añade proyectos personales o profesionales relevantes",
+        "fields": {
+          "name": {
+            "label": "Nombre del Proyecto *",
+            "placeholder": "Ingresa el nombre del proyecto"
+          },
+          "description": {
+            "label": "Descripción *",
+            "placeholder": "Describe el proyecto, tecnologías utilizadas y objetivos"
+          },
+          "startDate": {
+            "label": "Fecha de Inicio *"
+          },
+          "endDate": {
+            "label": "Fecha de Fin"
+          },
+          "url": {
+            "label": "URL del Proyecto *",
+            "placeholder": "Ingresa la URL del proyecto desplegado"
+          },
+          "avatar": {
+            "label": "Avatar/Logo",
+            "placeholder": "URL del avatar o logo del proyecto"
+          },
+          "github": {
+            "label": "Repositorio GitHub",
+            "placeholder": "URL del repositorio en GitHub"
+          }
+        },
+        "buttons": {
+          "add": "Añadir",
+          "next": "Siguiente"
+        },
+        "messages": {
+          "successAdded": "Proyecto añadido con éxito"
+        },
+        "validation": {
+          "name": {
+            "minLength": "El nombre del proyecto debe tener al menos 3 caracteres"
+          },
+          "description": {
+            "minLength": "La descripción debe tener al menos 20 caracteres"
+          },
+          "url": {
+            "invalid": "URL debe tener un formato válido"
+          },
+          "avatar": {
+            "invalid": "URL del avatar debe tener un formato válido"
+          },
+          "github": {
+            "invalid": "URL de GitHub debe tener un formato válido"
+          },
+          "startDate": {
+            "required": "La fecha de inicio es requerida",
+            "invalidFormat": "La fecha debe tener el formato YYYY-MM-DD",
+            "invalidDate": "La fecha de inicio no es válida"
+          },
+          "endDate": {
+            "invalid": "La fecha de fin debe ser posterior a la fecha de inicio",
+            "invalidFormat": "La fecha debe tener el formato YYYY-MM-DD",
+            "invalidDate": "La fecha de fin no es válida",
+            "mustBeAfterStart": "La fecha de fin debe ser posterior a la fecha de inicio"
+          }
+        }
+      }
+    }
+  }
+}
