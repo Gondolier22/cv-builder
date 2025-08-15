@@ -5,6 +5,7 @@ import useCVStore from "@/store/cv";
 import { useState, type FC } from "react";
 import Snackbar from "@/components/snackbar";
 import stepInputs from "./inputs";
+import Table from "../table";
 
 interface CoursesStepProps {
   onNext: () => void;
@@ -14,6 +15,7 @@ const Courses: FC<CoursesStepProps> = ({ onNext }) => {
   const { t } = useTranslation();
   const [showSnackbar, setShowSnackbar] = useState(false);
   const onSave = useCVStore((state) => state.addCourse);
+  const deleteCourse = useCVStore((state) => state.removeCourse);
   const coursesExperience = useCVStore((state) => state.cvData.courses) ?? [];
 
   const onSubmit = (data: Education) => {
@@ -22,7 +24,7 @@ const Courses: FC<CoursesStepProps> = ({ onNext }) => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6">
+    <div className="mx-auto p-6">
       <div className="mb-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-2">
           {t("cv.builder.form.courses.title")}
@@ -31,21 +33,62 @@ const Courses: FC<CoursesStepProps> = ({ onNext }) => {
           {t("cv.builder.form.courses.description")}
         </p>
       </div>
-      <Form<Education>
-        onSubmit={onSubmit}
-        schema={EducationSchema}
-        fields={stepInputs}
-        btnSubmitText={t("cv.builder.form.courses.buttons.add")}
-      ></Form>
-      <div className="mt-6 flex justify-end">
+
+      {/* Diseño responsivo mejorado */}
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+        {/* Formulario - toma 1 columna en XL, full width en pantallas menores */}
+        <div className="xl:col-span-1">
+          <div className="bg-white rounded-lg shadow-sm border p-6">
+            <h3 className="text-lg font-semibold mb-4 text-gray-800">
+              {t("cv.builder.form.courses.form.title", "Agregar Curso")}
+            </h3>
+            <Form<Education>
+              onSubmit={onSubmit}
+              schema={EducationSchema}
+              fields={stepInputs}
+              btnSubmitText={t("cv.builder.form.courses.buttons.add")}
+            />
+          </div>
+        </div>
+
+        {/* Tabla - toma 2 columnas en XL, full width en pantallas menores */}
+        <div className="xl:col-span-2">
+          <div className="bg-white rounded-lg shadow-sm border p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-gray-800">
+                {t("cv.builder.form.courses.table.title", "Cursos Agregados")}
+              </h3>
+              <span className="text-sm text-gray-500">
+                {coursesExperience.length}{" "}
+                {coursesExperience.length === 1 ? "entrada" : "entradas"}
+              </span>
+            </div>
+            {coursesExperience.length > 0 ? (
+              <Table data={coursesExperience} onDelete={deleteCourse} />
+            ) : (
+              <div className="text-center py-8 text-gray-500">
+                <p>
+                  {t(
+                    "cv.builder.form.courses.table.empty",
+                    "No hay cursos agregados aún"
+                  )}
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-8 flex justify-end">
         <button
           onClick={onNext}
-          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
           disabled={coursesExperience.length === 0}
         >
           {t("cv.builder.form.courses.buttons.next")}
         </button>
       </div>
+
       {showSnackbar && (
         <Snackbar
           message={t("cv.builder.form.courses.messages.successAdded")}
