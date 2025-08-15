@@ -53,6 +53,19 @@ const StepInputs: FormField[][] = [
   [
     {
       type: "input",
+      id: "jobPosition",
+      name: "jobPosition",
+      label: t("cv.builder.form.basics.fields.jobPosition.label"),
+      props: {
+        type: "text",
+        placeholder: t("cv.builder.form.basics.fields.jobPosition.placeholder"),
+        required: true,
+      },
+    },
+  ],
+  [
+    {
+      type: "input",
       id: "image",
       name: "image",
       label: t("cv.builder.form.basics.fields.image.label"),
