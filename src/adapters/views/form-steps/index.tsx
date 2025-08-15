@@ -9,6 +9,7 @@ const Education = lazy(() => import("./components/education"));
 const Skills = lazy(() => import("./components/skills"));
 const Courses = lazy(() => import("./components/courses"));
 const Projects = lazy(() => import("./components/projects"));
+const Languages = lazy(() => import("./components/languages"));
 
 const FormSteps = () => {
   const { t } = useTranslation();
@@ -31,11 +32,13 @@ const FormSteps = () => {
       case "education":
         return <Education onNext={nextStep} />;
       case "skills":
-        return <Skills onNext={goToPreview} />;
+        return <Skills onNext={nextStep} />;
       case "courses":
         return <Courses onNext={nextStep} />;
       case "projects":
         return <Projects onNext={nextStep} />;
+      case "languages":
+        return <Languages onNext={goToPreview} />;
       default:
         return null;
     }

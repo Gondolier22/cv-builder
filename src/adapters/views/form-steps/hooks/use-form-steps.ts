@@ -10,6 +10,7 @@ const STEPS: FormStep[] = [
   "education",
   "courses",
   "skills",
+  "languages",
 ];
 
 export const useFormSteps = () => {

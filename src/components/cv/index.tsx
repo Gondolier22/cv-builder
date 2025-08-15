@@ -5,6 +5,7 @@ import WorkSection from "./work-section.tsx";
 import EducationSection from "./education-section.tsx";
 import SkillsSection from "./skills-section.tsx";
 import ProjectsSection from "./projects-section.tsx";
+import LanguagesSection from "./languages.tsx";
 import "./styles/cv-print-styles.css";
 
 export const CVDisplay: React.FC = () => {
@@ -33,6 +34,11 @@ export const CVDisplay: React.FC = () => {
       {/* Projects Section */}
       {cvData.projects && cvData.projects.length > 0 && (
         <ProjectsSection projects={cvData.projects} />
+      )}
+
+      {/* Languages Section */}
+      {cvData.languages && cvData.languages.length > 0 && (
+        <LanguagesSection languages={cvData.languages} />
       )}
     </div>
   );

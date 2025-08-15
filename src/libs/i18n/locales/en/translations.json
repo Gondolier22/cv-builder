@@ -1,1 +1,60 @@
-{}
+{
+  "cv.builder": {
+    "form": {
+      "languages": {
+        "title": "Languages",
+        "description": "Add the languages you speak with their proficiency levels",
+        "form": {
+          "title": "Add Language"
+        },
+        "table": {
+          "title": "Added Languages",
+          "empty": "No languages added yet",
+          "count": {
+            "single": "entry",
+            "multiple": "entries"
+          }
+        },
+        "fields": {
+          "name": {
+            "label": "Language *",
+            "placeholder": "E.g: Spanish, English, French"
+          },
+          "reading": {
+            "label": "Reading *",
+            "placeholder": "E.g: Native, Advanced, Intermediate, Basic"
+          },
+          "writing": {
+            "label": "Writing *",
+            "placeholder": "E.g: Native, Advanced, Intermediate, Basic"
+          },
+          "speaking": {
+            "label": "Speaking *",
+            "placeholder": "E.g: Native, Advanced, Intermediate, Basic"
+          }
+        },
+        "buttons": {
+          "add": "Add",
+          "next": "Next"
+        },
+        "messages": {
+          "successAdded": "Language added successfully"
+        },
+        "validation": {
+          "name": {
+            "minLength": "Language name must have at least 2 characters"
+          },
+          "reading": {
+            "minLength": "Reading level must have at least 5 characters"
+          },
+          "writing": {
+            "minLength": "Writing level must have at least 5 characters"
+          },
+          "speaking": {
+            "minLength": "Speaking level must have at least 5 characters"
+          }
+        }
+      }
+    }
+  }
+}

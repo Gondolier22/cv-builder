@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import type { WorkExperience } from "../../store/cv";
 
 interface WorkSectionProps {
@@ -6,6 +7,8 @@ interface WorkSectionProps {
 }
 
 export const WorkSection: React.FC<WorkSectionProps> = ({ workExperience }) => {
+  const { t } = useTranslation();
+
   if (!workExperience || workExperience.length === 0) return null;
 
   const formatDate = (dateString: string) => {
@@ -19,7 +22,7 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ workExperience }) => {
   return (
     <section className="mb-8 print:mb-6 print:break-inside-avoid">
       <h2 className="text-2xl print:text-xl font-bold text-gray-900 mb-4 print:mb-3 border-b border-gray-300 pb-2 print:pb-1">
-        Experiencia Laboral
+        {t("cv.builder.cv.sections.work", "Experiencia Laboral")}
       </h2>
 
       <div className="space-y-6 print:space-y-4">
@@ -54,7 +57,9 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ workExperience }) => {
               <div className="text-sm print:text-xs text-gray-600 font-medium">
                 {formatDate(work.startDate)}
                 {" - "}
-                {work.endDate ? formatDate(work.endDate) : "Presente"}
+                {work.endDate
+                  ? formatDate(work.endDate)
+                  : t("cv.builder.cv.labels.present", "Presente")}
               </div>
             </div>
 
