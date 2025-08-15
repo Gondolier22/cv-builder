@@ -35,7 +35,7 @@ const Table: FC<TableProps> = ({ data, onDelete }) => {
   }
 
   return (
-    <div className="p-2">
+    <div className="p-2 overflow-x-auto">
       <table className="w-full border-collapse border border-gray-300">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (

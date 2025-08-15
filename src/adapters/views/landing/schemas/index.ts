@@ -2,6 +2,7 @@ export * from "./basics.schema";
 export * from "./course.schema";
 export * from "./cv.schema";
 export * from "./education.schema";
+export * from "./languages.schema";
 export * from "./location.schema";
 export * from "./profile.schema";
 export * from "./projects.schema";

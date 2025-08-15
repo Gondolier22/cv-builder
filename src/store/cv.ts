@@ -6,7 +6,8 @@ export type FormStep =
   | "education"
   | "skills"
   | "courses"
-  | "projects";
+  | "projects"
+  | "languages";
 
 // Tipos principales
 export interface Location {
@@ -43,6 +44,13 @@ export interface WorkExperience {
   summary: string;
 }
 
+export interface Language {
+  name: string;
+  reading: string;
+  writing: string;
+  speaking: string;
+}
+
 export interface Education {
   institution: string;
   url?: string;
@@ -68,6 +76,7 @@ export interface CVData {
   skills: string[];
   projects: Project[];
   courses: Education[];
+  languages: Language[];
 }
 
 // Tipos para el store
@@ -96,6 +105,8 @@ export interface CVStore {
   removeProject: (index: number) => void;
   addSkill: (skills: string) => void;
   removeSkill: (index: number) => void;
+  addLanguage: (language: Language) => void;
+  removeLanguage: (index: number) => void;
 
   // Acciones para navegación del formulario
   setTotalSteps: (total: number) => void;
@@ -128,6 +139,7 @@ const initialCVData: Partial<CVData> = {
   work: [],
   education: [],
   projects: [],
+  languages: [],
 };
 
 // Store con Zustand
@@ -238,6 +250,22 @@ const useCVStore = create<CVStore>((set, get) => ({
       cvData: {
         ...state.cvData,
         skills: state.cvData.skills?.filter((_, i) => i !== index) || [],
+      },
+    })),
+
+  addLanguage: (language: Language) =>
+    set((state) => ({
+      cvData: {
+        ...state.cvData,
+        languages: [...(state.cvData.languages || []), language],
+      },
+    })),
+
+  removeLanguage: (index: number) =>
+    set((state) => ({
+      cvData: {
+        ...state.cvData,
+        languages: state.cvData.languages?.filter((_, i) => i !== index) || [],
       },
     })),
 

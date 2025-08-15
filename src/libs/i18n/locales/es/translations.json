@@ -45,7 +45,8 @@
         "projects": "Proyectos",
         "education": "Educación",
         "courses": "Cursos",
-        "skills": "Habilidades"
+        "skills": "Habilidades",
+        "languages": "Idiomas"
       },
       "basics": {
         "title": "Información Personal",
@@ -364,6 +365,127 @@
             "invalidDate": "La fecha de fin no es válida",
             "mustBeAfterStart": "La fecha de fin debe ser posterior a la fecha de inicio"
           }
+        }
+      },
+      "languages": {
+        "title": "Idiomas",
+        "description": "Añade los idiomas que dominas con su nivel de competencia",
+        "form": {
+          "title": "Agregar Idioma"
+        },
+        "table": {
+          "title": "Idiomas Agregados",
+          "empty": "No hay idiomas agregados aún",
+          "count": {
+            "single": "entrada",
+            "multiple": "entradas"
+          }
+        },
+        "fields": {
+          "name": {
+            "label": "Idioma *",
+            "placeholder": "Ej: Español, Inglés, Francés"
+          },
+          "reading": {
+            "label": "Lectura *",
+            "placeholder": "Ej: Nativo, Avanzado, Intermedio, Básico"
+          },
+          "writing": {
+            "label": "Escritura *",
+            "placeholder": "Ej: Nativo, Avanzado, Intermedio, Básico"
+          },
+          "speaking": {
+            "label": "Habla *",
+            "placeholder": "Ej: Nativo, Avanzado, Intermedio, Básico"
+          }
+        },
+        "buttons": {
+          "add": "Añadir",
+          "next": "Siguiente"
+        },
+        "messages": {
+          "successAdded": "Idioma añadido con éxito"
+        },
+        "validation": {
+          "name": {
+            "minLength": "El nombre del idioma debe tener al menos 2 caracteres"
+          },
+          "reading": {
+            "minLength": "El nivel de lectura debe tener al menos 5 caracteres"
+          },
+          "writing": {
+            "minLength": "El nivel de escritura debe tener al menos 5 caracteres"
+          },
+          "speaking": {
+            "minLength": "El nivel de habla debe tener al menos 5 caracteres"
+          }
+        }
+      }
+    },
+    "cv": {
+      "sections": {
+        "basics": "Información Personal",
+        "work": "Experiencia Laboral",
+        "education": "Educación",
+        "skills": "Habilidades Técnicas",
+        "projects": "Proyectos",
+        "languages": "Idiomas"
+      },
+      "labels": {
+        "present": "Presente",
+        "demo": "Demo",
+        "code": "Código",
+        "reading": "Lectura",
+        "writing": "Escritura",
+        "speaking": "Habla",
+        "entries": {
+          "single": "entrada",
+          "multiple": "entradas"
+        }
+      },
+      "work": {
+        "table": {
+          "title": "Experiencias Agregadas",
+          "empty": "No hay experiencias agregadas aún"
+        },
+        "form": {
+          "title": "Agregar Experiencia"
+        }
+      },
+      "education": {
+        "table": {
+          "title": "Educación Agregada",
+          "empty": "No hay educación agregada aún"
+        },
+        "form": {
+          "title": "Agregar Educación"
+        }
+      },
+      "skills": {
+        "table": {
+          "title": "Habilidades Agregadas",
+          "empty": "No hay habilidades agregadas aún"
+        },
+        "form": {
+          "title": "Agregar Habilidad"
+        }
+      },
+      "projects": {
+        "table": {
+          "title": "Proyectos Agregados",
+          "empty": "No hay proyectos agregados aún"
+        },
+        "form": {
+          "title": "Agregar Proyecto"
+        }
+      },
+      "languages": {
+        "table": {
+          "title": "Idiomas Agregados",
+          "empty": "No hay idiomas agregados aún"
+        },
+        "form": {
+          "title": "Agregar Idioma"
         }
       }
     }
