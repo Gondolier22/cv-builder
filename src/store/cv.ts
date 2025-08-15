@@ -1,5 +1,13 @@
 import { create } from "zustand";
 
+export type FormStep =
+  | "basics"
+  | "work"
+  | "education"
+  | "skills"
+  | "courses"
+  | "projects";
+
 // Tipos principales
 export interface Location {
   address?: string;
@@ -17,29 +25,15 @@ export interface Profile {
 
 export interface Basics {
   name: string;
-  label: string;
+  jobPosition: string;
   image?: string;
   email: string;
   phone: string;
   url?: string;
   summary: string;
   location: Location;
-  profiles: Profile[];
+  profiles?: Profile[];
 }
-
-export interface Button {
-  text: string;
-  href: string;
-  type: string;
-}
-
-export interface Hero {
-  title: string;
-  subtitle: string;
-  description: string;
-  buttons: Button[];
-}
-
 export interface WorkExperience {
   company: string;
   position: string;
@@ -57,14 +51,6 @@ export interface Education {
   endDate?: string;
 }
 
-export interface Language {
-  language: string;
-  isNative: boolean;
-  read?: string;
-  write?: string;
-  speak?: string;
-}
-
 export interface Project {
   name: string;
   description: string;
@@ -79,14 +65,9 @@ export interface CVData {
   basics: Basics;
   work: WorkExperience[];
   education: Education[];
-  courses: Education[];
   skills: string[];
-  languages: Language[];
   projects: Project[];
-  awards: any[];
-  certificates: any[];
-  publications: any[];
-  volunteer: any[];
+  courses: Education[];
 }
 
 // Tipos para el store
@@ -95,31 +76,28 @@ export interface CVStore {
   cvData: Partial<CVData>;
 
   // Estado del formulario multi-step
-  currentStep: number;
+  currentStep: FormStep;
+  completedSteps: Set<FormStep>;
   totalSteps: number;
   isFormComplete: boolean;
 
+  setCurrentStep: (step: FormStep) => void;
+  markStepAsCompleted: (step: FormStep) => void;
+
   // Acciones para actualizar datos del CV
-  updateBasics: (basics: Partial<Basics>) => void;
+  addBasics: (basics: Basics) => void;
   addWorkExperience: (work: WorkExperience) => void;
-  updateWorkExperience: (index: number, work: Partial<WorkExperience>) => void;
   removeWorkExperience: (index: number) => void;
   addEducation: (education: Education) => void;
-  updateEducation: (index: number, education: Partial<Education>) => void;
   removeEducation: (index: number) => void;
-  updateSkills: (skills: string[]) => void;
-  addCourses: (courses: Education) => void;
-  addLanguage: (language: Language) => void;
-  updateLanguage: (index: number, language: Partial<Language>) => void;
-  removeLanguage: (index: number) => void;
+  addCourse: (course: Education) => void;
+  removeCourse: (index: number) => void;
   addProject: (project: Project) => void;
-  updateProject: (index: number, project: Partial<Project>) => void;
   removeProject: (index: number) => void;
+  addSkill: (skills: string) => void;
+  removeSkill: (index: number) => void;
 
   // Acciones para navegación del formulario
-  nextStep: () => void;
-  prevStep: () => void;
-  goToStep: (step: number) => void;
   setTotalSteps: (total: number) => void;
 
   // Utilidades
@@ -132,7 +110,7 @@ export interface CVStore {
 const initialCVData: Partial<CVData> = {
   basics: {
     name: "",
-    label: "",
+    jobPosition: "",
     image: "",
     email: "",
     phone: "",
@@ -149,7 +127,6 @@ const initialCVData: Partial<CVData> = {
   },
   work: [],
   education: [],
-  languages: [],
   projects: [],
 };
 
@@ -157,45 +134,27 @@ const initialCVData: Partial<CVData> = {
 const useCVStore = create<CVStore>((set, get) => ({
   // Estado inicial
   cvData: initialCVData,
-  currentStep: 0,
-  totalSteps: 6, // basics, work, education, technologies, languages, projects
+  currentStep: "basics",
+  totalSteps: 0,
   isFormComplete: false,
 
-  // Acciones para actualizar datos del CV
-  addCourses: (courses) =>
+  completedSteps: new Set(),
+
+  setCurrentStep: (step) => set({ currentStep: step }),
+  markStepAsCompleted: (step) =>
+    set((state) => {
+      const completedSteps = new Set(state.completedSteps);
+      completedSteps.add(step);
+      return { ...state, completedSteps };
+    }),
+
+  addBasics: (basics) =>
     set((state) => ({
       cvData: {
         ...state.cvData,
-        courses: [...(state.cvData.courses ?? []), courses],
+        basics,
       },
     })),
-
-  // Acciones para datos básicos
-  updateBasics: (basics) =>
-    set((state) => ({
-      cvData: {
-        ...state.cvData,
-        basics: {
-          name: basics.name ?? state.cvData.basics?.name ?? "",
-          label: basics.label ?? state.cvData.basics?.label ?? "",
-          image: basics.image ?? state.cvData.basics?.image ?? "",
-          email: basics.email ?? state.cvData.basics?.email ?? "",
-          phone: basics.phone ?? state.cvData.basics?.phone ?? "",
-          url: basics.url ?? state.cvData.basics?.url ?? "",
-          summary: basics.summary ?? state.cvData.basics?.summary ?? "",
-          location: basics.location ??
-            state.cvData.basics?.location ?? {
-              address: "",
-              postalCode: "",
-              city: "",
-              countryCode: "",
-              region: "",
-            },
-          profiles: basics.profiles ?? state.cvData.basics?.profiles ?? [],
-        },
-      },
-    })),
-
   // Acciones para experiencia laboral
   addWorkExperience: (work) =>
     set((state) => ({
@@ -204,18 +163,6 @@ const useCVStore = create<CVStore>((set, get) => ({
         work: [...(state.cvData.work || []), work],
       },
     })),
-
-  updateWorkExperience: (index, work) =>
-    set((state) => {
-      const updatedWork = [...(state.cvData.work || [])];
-      updatedWork[index] = { ...updatedWork[index], ...work };
-      return {
-        cvData: {
-          ...state.cvData,
-          work: updatedWork,
-        },
-      };
-    }),
 
   removeWorkExperience: (index) =>
     set((state) => ({
@@ -234,18 +181,6 @@ const useCVStore = create<CVStore>((set, get) => ({
       },
     })),
 
-  updateEducation: (index, education) =>
-    set((state) => {
-      const updatedEducation = [...(state.cvData.education || [])];
-      updatedEducation[index] = { ...updatedEducation[index], ...education };
-      return {
-        cvData: {
-          ...state.cvData,
-          education: updatedEducation,
-        },
-      };
-    }),
-
   removeEducation: (index) =>
     set((state) => ({
       cvData: {
@@ -254,45 +189,24 @@ const useCVStore = create<CVStore>((set, get) => ({
       },
     })),
 
+  // Acciones para educación
+  addCourse: (course) =>
+    set((state) => ({
+      cvData: {
+        ...state.cvData,
+        courses: [...(state.cvData.courses || []), course],
+      },
+    })),
+
+  removeCourse: (index) =>
+    set((state) => ({
+      cvData: {
+        ...state.cvData,
+        courses: state.cvData.courses?.filter((_, i) => i !== index) || [],
+      },
+    })),
+
   // Acciones para habilidades
-  updateSkills: (skills: string[]) =>
-    set((state) => {
-      return {
-        cvData: {
-          ...state.cvData,
-          skills: [...new Set(...(state.cvData.skills || [])), ...skills],
-        },
-      };
-    }),
-
-  // Acciones para idiomas
-  addLanguage: (language) =>
-    set((state) => ({
-      cvData: {
-        ...state.cvData,
-        languages: [...(state.cvData.languages || []), language],
-      },
-    })),
-
-  updateLanguage: (index, language) =>
-    set((state) => {
-      const updatedLanguages = [...(state.cvData.languages || [])];
-      updatedLanguages[index] = { ...updatedLanguages[index], ...language };
-      return {
-        cvData: {
-          ...state.cvData,
-          languages: updatedLanguages,
-        },
-      };
-    }),
-
-  removeLanguage: (index) =>
-    set((state) => ({
-      cvData: {
-        ...state.cvData,
-        languages: state.cvData.languages?.filter((_, i) => i !== index) || [],
-      },
-    })),
 
   // Acciones para proyectos
   addProject: (project) =>
@@ -303,18 +217,6 @@ const useCVStore = create<CVStore>((set, get) => ({
       },
     })),
 
-  updateProject: (index, project) =>
-    set((state) => {
-      const updatedProjects = [...(state.cvData.projects || [])];
-      updatedProjects[index] = { ...updatedProjects[index], ...project };
-      return {
-        cvData: {
-          ...state.cvData,
-          projects: updatedProjects,
-        },
-      };
-    }),
-
   removeProject: (index) =>
     set((state) => ({
       cvData: {
@@ -323,20 +225,20 @@ const useCVStore = create<CVStore>((set, get) => ({
       },
     })),
 
-  // Navegación del formulario
-  nextStep: () =>
+  addSkill: (skills) =>
     set((state) => ({
-      currentStep: Math.min(state.currentStep + 1, state.totalSteps - 1),
+      cvData: {
+        ...state.cvData,
+        skills: [...(state.cvData.skills || []), skills],
+      },
     })),
 
-  prevStep: () =>
+  removeSkill: (index) =>
     set((state) => ({
-      currentStep: Math.max(state.currentStep - 1, 0),
-    })),
-
-  goToStep: (step) =>
-    set((state) => ({
-      currentStep: Math.max(0, Math.min(step, state.totalSteps - 1)),
+      cvData: {
+        ...state.cvData,
+        skills: state.cvData.skills?.filter((_, i) => i !== index) || [],
+      },
     })),
 
   setTotalSteps: (total) =>
@@ -348,7 +250,7 @@ const useCVStore = create<CVStore>((set, get) => ({
   resetCV: () =>
     set(() => ({
       cvData: initialCVData,
-      currentStep: 0,
+      currentStep: "basics",
       isFormComplete: false,
     })),
 
@@ -359,7 +261,7 @@ const useCVStore = create<CVStore>((set, get) => ({
 
   getProgress: () => {
     const state = get();
-    return ((state.currentStep + 1) / state.totalSteps) * 100;
+    return (state.completedSteps.size / state.totalSteps) * 100;
   },
 }));
 

@@ -1,6 +1,7 @@
 import { useFormSteps } from "./hooks/use-form-steps";
 import { lazy, Suspense, useCallback } from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const BasicsStep = lazy(() => import("./components/basics-steps"));
 const WorkExperience = lazy(() => import("./components/work"));
@@ -18,6 +19,7 @@ const FormSteps = () => {
     nextStep,
     prevStep,
     canGoToPrevStep,
+    goToPreview,
   } = useFormSteps();
 
   const renderCurrentStep = useCallback(() => {
@@ -29,7 +31,7 @@ const FormSteps = () => {
       case "education":
         return <Education onNext={nextStep} />;
       case "skills":
-        return <Skills onNext={nextStep} />;
+        return <Skills onNext={goToPreview} />;
       case "courses":
         return <Courses onNext={nextStep} />;
       case "projects":
@@ -37,20 +39,20 @@ const FormSteps = () => {
       default:
         return null;
     }
-  }, [currentStep, nextStep]);
+  }, [currentStep, nextStep, goToPreview]);
 
   return (
     <div className="min-h-screen bg-gray-50 w-full">
       {/* Progress bar */}
-      <div className="bg-white shadow-sm flex items-center justify-center gap-16 w-full">
+      <div className="mx-auto bg-white shadow-sm grid grid-cols-1 md:grid-cols-3 items-center gap-4 lg:gap-16 flex-wrap p-4">
         <button
-          className="text-sm font-medium text-gray-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:text-gray-500 disabled:bg-gray-100 px-4 py-2 rounded-md"
+          className="md:max-w-40 text-sm text-center font-medium text-gray-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:text-gray-500 disabled:bg-gray-100 px-4 py-2 rounded-md"
           onClick={prevStep}
           disabled={!canGoToPrevStep}
         >
           {t("cv.builder.form.navigation.previous")}
         </button>
-        <div className="w-full max-w-4xl py-4">
+        <div className="w-full max-w- lg:py-4">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-gray-900">
               {t("cv.builder.form.progress.step", {
@@ -75,6 +77,12 @@ const FormSteps = () => {
             />
           </div>
         </div>
+        <Link
+          className="md:max-w-40 text-sm text-center bg-blue-500 text-white font-medium  cursor-pointer px-4 py-2 rounded-md"
+          to="/preview"
+        >
+          {t("cv.builder.form.navigation.preview")}
+        </Link>
       </div>
 
       {/* Step content */}

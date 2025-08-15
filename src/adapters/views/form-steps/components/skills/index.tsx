@@ -13,13 +13,13 @@ interface SkillsStepProps {
 const Skills: FC<SkillsStepProps> = ({ onNext }) => {
   const { t } = useTranslation();
   const [showSnackbar, setShowSnackbar] = useState(false);
-  const onSave = useCVStore((state) => state.updateSkills);
+  const onSave = useCVStore((state) => state.addSkill);
   // Selector optimizado para obtener solo las skills
   const skillsExperience = useCVStore((state) => state.cvData.skills) ?? [];
 
   const onSubmit = useCallback(
     (data: Skills) => {
-      onSave([data.skill]);
+      onSave(data.skill);
       setShowSnackbar(true);
     },
     [onSave]
