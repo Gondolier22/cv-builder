@@ -32,7 +32,8 @@
     },
     "form": {
       "navigation": {
-        "previous": "Anterior"
+        "previous": "Anterior",
+        "preview": "Vista Previa"
       },
       "progress": {
         "step": "Paso {{current}} de {{total}}",
@@ -84,7 +85,7 @@
           }
         },
         "buttons": {
-          "nextStep": "Siguiente paso"
+          "next": "Siguiente"
         },
         "validation": {
           "name": {

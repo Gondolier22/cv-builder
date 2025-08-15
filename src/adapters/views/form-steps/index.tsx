@@ -1,6 +1,7 @@
 import { useFormSteps } from "./hooks/use-form-steps";
 import { lazy, Suspense, useCallback } from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const BasicsStep = lazy(() => import("./components/basics-steps"));
 const WorkExperience = lazy(() => import("./components/work"));
@@ -18,6 +19,7 @@ const FormSteps = () => {
     nextStep,
     prevStep,
     canGoToPrevStep,
+    goToPreview,
   } = useFormSteps();
 
   const renderCurrentStep = useCallback(() => {
@@ -29,7 +31,7 @@ const FormSteps = () => {
       case "education":
         return <Education onNext={nextStep} />;
       case "skills":
-        return <Skills onNext={nextStep} />;
+        return <Skills onNext={goToPreview} />;
       case "courses":
         return <Courses onNext={nextStep} />;
       case "projects":
@@ -37,7 +39,7 @@ const FormSteps = () => {
       default:
         return null;
     }
-  }, [currentStep, nextStep]);
+  }, [currentStep, nextStep, goToPreview]);
 
   return (
     <div className="min-h-screen bg-gray-50 w-full">
@@ -75,6 +77,12 @@ const FormSteps = () => {
             />
           </div>
         </div>
+        <Link
+          className="text-sm bg-blue-500 text-white font-medium  cursor-pointer px-4 py-2 rounded-md"
+          to="/preview"
+        >
+          {t("cv.builder.form.navigation.preview")}
+        </Link>
       </div>
 
       {/* Step content */}

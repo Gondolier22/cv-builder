@@ -2,8 +2,10 @@ import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { validateCVDataWithErrors } from "../utils/validate-json";
 import useCVStore from "@/store/cv";
+import { useNavigate } from "react-router-dom";
 
 const useLandingController = () => {
+  const navigate = useNavigate();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { loadCVData } = useCVStore();
   const { t } = useTranslation();
@@ -18,6 +20,7 @@ const useLandingController = () => {
           const result = validateCVDataWithErrors(cvData);
           if (result.success) {
             loadCVData(cvData);
+            navigate("/form");
           } else {
             console.error("Validation errors found:", result.errors);
             alert(t("cv.builder.landing.errors.invalidFormat"));

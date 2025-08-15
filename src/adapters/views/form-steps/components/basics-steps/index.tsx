@@ -11,9 +11,15 @@ interface BasicsStepProps {
 const BasicsStep = ({ onNext }: BasicsStepProps) => {
   const { t } = useTranslation();
   const initialData = useCVStore((state) => state.cvData.basics);
-  const onSave = useCVStore((state) => state.updateBasics);
+  const onSave = useCVStore((state) => state.addBasics);
 
   const onSubmit = (data: Basics) => {
+    if (!data.image) {
+      onSave({ ...data, image: "" });
+      onNext();
+      return;
+    }
+
     const reader = new FileReader();
     reader.readAsDataURL(data.image as File);
     reader.onload = () => {
@@ -21,8 +27,6 @@ const BasicsStep = ({ onNext }: BasicsStepProps) => {
       onNext();
     };
   };
-
-  console.log("Initial Data:", initialData);
 
   return (
     <div className="max-w-2xl mx-auto p-6">
@@ -40,6 +44,7 @@ const BasicsStep = ({ onNext }: BasicsStepProps) => {
         schema={BasicsSchema}
         fields={StepInputs}
         initialData={initialData}
+        btnSubmitText={t("cv.builder.form.basics.buttons.next")}
       ></Form>
     </div>
   );

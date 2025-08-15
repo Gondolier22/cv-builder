@@ -9,6 +9,9 @@ export const BasicsSchema = z.object({
   name: z
     .string()
     .min(3, t("cv.builder.form.basics.validation.name.minLength")),
+  jobPosition: z
+    .string()
+    .min(3, t("cv.builder.form.basics.validation.jobPosition.minLength")),
   image: z
     .union([
       z.instanceof(File),
@@ -54,8 +57,7 @@ export const BasicsSchema = z.object({
     .optional(),
   summary: z
     .string()
-    .min(30, t("cv.builder.form.basics.validation.summary.minLength"))
-    .optional(),
+    .min(30, t("cv.builder.form.basics.validation.summary.minLength")),
   location: LocationSchema,
   profiles: z.array(ProfileSchema).optional(),
 });

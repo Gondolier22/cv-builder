@@ -1,12 +1,7 @@
-import { useState } from "react";
-
-export type FormStep =
-  | "basics"
-  | "work"
-  | "education"
-  | "skills"
-  | "courses"
-  | "projects";
+import type { FormStep } from "@/store/cv";
+import useCVStore from "@/store/cv";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const STEPS: FormStep[] = [
   "basics",
@@ -18,10 +13,19 @@ const STEPS: FormStep[] = [
 ];
 
 export const useFormSteps = () => {
-  const [currentStep, setCurrentStep] = useState<FormStep>("basics");
-  const [completedSteps, setCompletedSteps] = useState<Set<FormStep>>(
-    new Set()
-  );
+  const {
+    currentStep,
+    setCurrentStep,
+    markStepAsCompleted,
+    completedSteps,
+    setTotalSteps,
+  } = useCVStore();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setTotalSteps(STEPS.length);
+  }, [setTotalSteps]);
 
   const currentStepIndex = STEPS.indexOf(currentStep);
   const totalSteps = STEPS.length;
@@ -45,12 +49,12 @@ export const useFormSteps = () => {
     }
   };
 
-  const markStepAsCompleted = (step: FormStep) => {
-    setCompletedSteps((prev) => new Set([...prev, step]));
-  };
-
   const isStepCompleted = (step: FormStep) => {
     return completedSteps.has(step);
+  };
+
+  const goToPreview = () => {
+    navigate("/preview");
   };
 
   return {
@@ -62,6 +66,7 @@ export const useFormSteps = () => {
     nextStep,
     prevStep,
     isStepCompleted,
+    goToPreview,
     canGoToPrevStep: currentStepIndex > 0,
   };
 };

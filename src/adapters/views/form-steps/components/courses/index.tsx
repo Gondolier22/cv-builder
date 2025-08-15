@@ -13,7 +13,7 @@ interface CoursesStepProps {
 const Courses: FC<CoursesStepProps> = ({ onNext }) => {
   const { t } = useTranslation();
   const [showSnackbar, setShowSnackbar] = useState(false);
-  const onSave = useCVStore((state) => state.addCourses);
+  const onSave = useCVStore((state) => state.addCourse);
   const coursesExperience = useCVStore((state) => state.cvData.courses) ?? [];
 
   const onSubmit = (data: Education) => {

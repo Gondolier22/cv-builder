@@ -1,0 +1,161 @@
+{
+  "basics": {
+    "name": "María González López",
+    "label": "Desarrolladora Full Stack",
+    "image": "https://avatars.githubusercontent.com/u/12345678?v=4",
+    "email": "maria.gonzalez@email.com",
+    "phone": "+34 612 345 678",
+    "url": "https://mariagonzalez.dev",
+    "summary": "Desarrolladora Full Stack con más de 5 años de experiencia en el desarrollo de aplicaciones web modernas. Especializada en React, Node.js y tecnologías cloud. Apasionada por crear soluciones eficientes y escalables que mejoren la experiencia del usuario.",
+    "location": {
+      "address": "Calle Gran Vía, 123",
+      "postalCode": "28013",
+      "city": "Madrid",
+      "countryCode": "ES",
+      "region": "Comunidad de Madrid"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "mariagonzalez",
+        "url": "https://github.com/mariagonzalez"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "maria-gonzalez-dev",
+        "url": "https://linkedin.com/in/maria-gonzalez-dev"
+      },
+      {
+        "network": "Twitter",
+        "username": "mariadev",
+        "url": "https://twitter.com/mariadev"
+      }
+    ]
+  },
+  "work": [
+    {
+      "company": "TechSolutions S.L.",
+      "position": "Senior Full Stack Developer",
+      "url": "https://techsolutions.com",
+      "startDate": "2022-03-01",
+      "summary": "Lidero el desarrollo de aplicaciones web empresariales utilizando React, TypeScript y Node.js. Implementé arquitecturas microservicios que mejoraron el rendimiento en un 40%. Mentorizo a desarrolladores junior y participo activamente en la toma de decisiones técnicas."
+    },
+    {
+      "company": "StartupInnovation",
+      "position": "Full Stack Developer",
+      "url": "https://startupinnovation.es",
+      "startDate": "2020-06-15",
+      "endDate": "2022-02-28",
+      "summary": "Desarrollé desde cero la plataforma principal de la empresa utilizando React, Express.js y PostgreSQL. Implementé sistemas de autenticación, APIs RESTful y dashboards interactivos. Colaboré estrechamente con el equipo de diseño UX/UI para crear interfaces intuitivas."
+    },
+    {
+      "company": "WebAgency Pro",
+      "position": "Frontend Developer",
+      "url": "https://webagencypro.com",
+      "startDate": "2019-01-10",
+      "endDate": "2020-06-10",
+      "summary": "Desarrollé sitios web responsivos y aplicaciones web para diversos clientes utilizando HTML5, CSS3, JavaScript y WordPress. Optimicé el rendimiento web logrando mejoras del 60% en tiempo de carga. Trabajé con metodologías ágiles y control de versiones con Git."
+    }
+  ],
+  "education": [
+    {
+      "institution": "Universidad Politécnica de Madrid",
+      "url": "https://www.upm.es",
+      "title": "Grado en Ingeniería Informática",
+      "startDate": "2015-09-01",
+      "endDate": "2019-06-30"
+    },
+    {
+      "institution": "IES Tecnológico",
+      "url": "https://iestecnologico.edu.es",
+      "title": "Técnico Superior en Desarrollo de Aplicaciones Web",
+      "startDate": "2013-09-01",
+      "endDate": "2015-06-30"
+    }
+  ],
+  "skills": [
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Vue.js",
+    "Node.js",
+    "Express.js",
+    "PostgreSQL",
+    "MongoDB",
+    "Docker",
+    "AWS",
+    "Git",
+    "HTML5",
+    "CSS3",
+    "SASS",
+    "REST APIs",
+    "GraphQL",
+    "Jest",
+    "Cypress",
+    "Agile",
+    "Scrum"
+  ],
+  "projects": [
+    {
+      "name": "E-commerce Platform",
+      "description": "Plataforma de comercio electrónico completa desarrollada con React, Node.js y PostgreSQL. Incluye sistema de pagos, gestión de inventario, panel de administración y aplicación móvil companion. Maneja más de 10,000 productos y 5,000 usuarios activos.",
+      "startDate": "2023-01-15",
+      "endDate": "2023-08-30",
+      "url": "https://ecommerce-demo.com",
+      "avatar": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=100",
+      "github": "https://github.com/mariagonzalez/ecommerce-platform"
+    },
+    {
+      "name": "Task Management App",
+      "description": "Aplicación de gestión de tareas con funcionalidades de colaboración en tiempo real. Desarrollada con React, Socket.io y Firebase. Incluye notificaciones push, sincronización offline y dashboard analítico para equipos.",
+      "startDate": "2022-09-01",
+      "endDate": "2022-12-15",
+      "url": "https://taskmanager-app.com",
+      "avatar": "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=100",
+      "github": "https://github.com/mariagonzalez/task-manager"
+    },
+    {
+      "name": "Weather Forecast API",
+      "description": "API RESTful para pronósticos del tiempo que agrega datos de múltiples fuentes. Desarrollada con Node.js, Express y Redis para caching. Sirve más de 100,000 requests diarios con 99.9% de uptime.",
+      "startDate": "2022-05-01",
+      "endDate": "2022-07-30",
+      "url": "https://api.weatherforecast.dev",
+      "avatar": "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=100",
+      "github": "https://github.com/mariagonzalez/weather-api"
+    }
+  ],
+  "courses": [
+    {
+      "institution": "AWS Training",
+      "url": "https://aws.amazon.com/training",
+      "title": "AWS Solutions Architect Associate",
+      "startDate": "2023-03-01",
+      "endDate": "2023-05-15",
+      "description": "Curso de formación en arquitecturas de soluciones en AWS, cubriendo servicios como EC2, S3 y Lambda."
+    },
+    {
+      "institution": "Platzi",
+      "url": "https://platzi.com",
+      "title": "Curso Avanzado de React.js",
+      "startDate": "2022-11-01",
+      "endDate": "2022-12-30",
+      "description": "Curso avanzado de React.js que cubre hooks, context API y optimización de rendimiento."
+    },
+    {
+      "institution": "Udemy",
+      "url": "https://udemy.com",
+      "title": "Docker y Kubernetes: Guía Completa",
+      "startDate": "2022-08-01",
+      "endDate": "2022-10-15",
+      "description": "Curso completo sobre Docker y Kubernetes, desde la creación de contenedores hasta la orquestación de microservicios."
+    },
+    {
+      "institution": "FreeCodeCamp",
+      "url": "https://freecodecamp.org",
+      "title": "Machine Learning with Python",
+      "startDate": "2021-06-01",
+      "endDate": "2021-09-30",
+      "description": "Curso de introducción al aprendizaje automático con Python, cubriendo bibliotecas como scikit-learn y TensorFlow."
+    }
+  ]
+}
