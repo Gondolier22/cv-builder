@@ -55,6 +55,10 @@
             "label": "Nombre completo *",
             "placeholder": "Tu nombre completo"
           },
+          "jobPosition": {
+            "label": "Puesto de Trabajo *",
+            "placeholder": "Puesto de trabajo que buscas"
+          },
           "email": {
             "label": "Email *",
             "placeholder": "tu@email.com"
@@ -90,6 +94,9 @@
         "validation": {
           "name": {
             "minLength": "El nombre debe tener al menos 3 caracteres"
+          },
+          "jobPosition": {
+            "minLength": "El puesto de trabajo debe tener al menos 3 caracteres"
           },
           "email": {
             "invalid": "El formato del email no es válido"
