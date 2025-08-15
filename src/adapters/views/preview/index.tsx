@@ -9,7 +9,7 @@ const Preview = () => {
       <h1 className="text-2xl font-bold print:hidden">CV Preview</h1>
       <button
         onClick={goBackHandler}
-        className="print:hidden absolute top-4 left-4 bg-gray-300 text-gray-800 px-4 py-2 rounded-md cursor-pointer hover:bg-gray-400"
+        className="print:hidden absolute top-24 left-4 bg-gray-300 text-gray-800 px-4 py-2 rounded-md cursor-pointer hover:bg-gray-400"
       >
         Volver
       </button>

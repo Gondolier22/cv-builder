@@ -5,13 +5,17 @@ const LandingPage = lazy(() => import("./views/landing"));
 const FormSteps = lazy(() => import("./views/form-steps"));
 const Preview = lazy(() => import("./views/preview"));
 
+const MainLayout = lazy(() => import("../layouts/main"));
+
 const Router = () => {
   return (
     <Suspense>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/form" element={<FormSteps />} />
-        <Route path="/preview" element={<Preview />} />
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<LandingPage />} />
+          <Route path="form" element={<FormSteps />} />
+          <Route path="preview" element={<Preview />} />
+        </Route>
       </Routes>
     </Suspense>
   );

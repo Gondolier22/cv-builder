@@ -44,15 +44,15 @@ const FormSteps = () => {
   return (
     <div className="min-h-screen bg-gray-50 w-full">
       {/* Progress bar */}
-      <div className="bg-white shadow-sm flex items-center justify-center gap-16 w-full">
+      <div className="mx-auto bg-white shadow-sm grid grid-cols-1 md:grid-cols-3 items-center gap-4 lg:gap-16 flex-wrap p-4">
         <button
-          className="text-sm font-medium text-gray-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:text-gray-500 disabled:bg-gray-100 px-4 py-2 rounded-md"
+          className="md:max-w-40 text-sm text-center font-medium text-gray-900 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:text-gray-500 disabled:bg-gray-100 px-4 py-2 rounded-md"
           onClick={prevStep}
           disabled={!canGoToPrevStep}
         >
           {t("cv.builder.form.navigation.previous")}
         </button>
-        <div className="w-full max-w-4xl py-4">
+        <div className="w-full max-w- lg:py-4">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-gray-900">
               {t("cv.builder.form.progress.step", {
@@ -78,7 +78,7 @@ const FormSteps = () => {
           </div>
         </div>
         <Link
-          className="text-sm bg-blue-500 text-white font-medium  cursor-pointer px-4 py-2 rounded-md"
+          className="md:max-w-40 text-sm text-center bg-blue-500 text-white font-medium  cursor-pointer px-4 py-2 rounded-md"
           to="/preview"
         >
           {t("cv.builder.form.navigation.preview")}
